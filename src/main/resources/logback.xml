@@ -6,7 +6,7 @@
     <!-- 控制台输出 -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+            <pattern>%d{HH:mm:ss.SSS} [%X{traceId}-%X{X-B3-TraceId}] [%thread] %-5level %logger{50} - %msg%n</pattern>
         </encoder>
     </appender>
     <root level="INFO">
@@ -19,7 +19,7 @@
             <MaxHistory>1</MaxHistory>
         </rollingPolicy>
         <encoder>
-            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+            <pattern>%d{HH:mm:ss.SSS} [%X{traceId}-%X{X-B3-TraceId}] [%thread] %-5level %logger{50} - %msg%n</pattern>
         </encoder>
     </appender>
     <appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
@@ -36,7 +36,7 @@
             <MaxHistory>1</MaxHistory>
         </rollingPolicy>
         <encoder>
-            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+            <pattern>%d{HH:mm:ss.SSS} [%X{traceId}-%X{X-B3-TraceId}] [%thread] %-5level %logger{50} - %msg%n</pattern>
         </encoder>
     </appender>
     <appender name="VISIT_ASYNC" class="ch.qos.logback.classic.AsyncAppender">
