@@ -47,4 +47,21 @@
     <logger name="com.boot.code" level="info">
         <appender-ref ref="VISIT_ASYNC" />
     </logger>
+    <appender name="WARM_LOG"  class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_HOME}/%d{yyyy-MM-dd}/${APP_NAME}.%d{yyyy-MM-dd}.warm.log</FileNamePattern>
+            <MaxHistory>1</MaxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%X{traceId}-%X{X-B3-TraceId}] [%thread] %-5level %logger{50} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="WARM_ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="WARM_LOG" />
+        <queueSize>512</queueSize>
+        <discardingThreshold>0</discardingThreshold>
+    </appender>
+    <logger name="com.boot.code" level="WARM">
+        <appender-ref ref="WARM_ASYNC" />
+    </logger>
 </configuration>
