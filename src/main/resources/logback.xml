@@ -45,7 +45,7 @@
         <queueSize>512</queueSize>
         <discardingThreshold>0</discardingThreshold>
     </appender>
-    <logger name="com.boot.code" level="info">
+    <logger name="com.boot.common.RestActionInterceptor" level="info">
         <appender-ref ref="VISIT_ASYNC" />
     </logger>
 

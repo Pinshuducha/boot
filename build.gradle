@@ -17,5 +17,6 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
   //  implementation 'ch.qos.logback:logback-classic:1.2.3'
     implementation 'org.springframework.cloud:spring-cloud-starter-sleuth:2.1.0.RELEASE'
+    implementation 'org.json:json:20180813'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
