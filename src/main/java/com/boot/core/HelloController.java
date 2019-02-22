@@ -12,9 +12,10 @@ public class HelloController {
 
 
     private static Log logger = LogFactory.getLog(HelloController.class);
+
     @GetMapping("/hello/{name}")
     public String hello(@PathVariable String name) {
-        logger.info("controller类中方法的参数："+name);
+        logger.info("controller类中方法的参数：" + name);
         HelloService helloService = new HelloService();
         helloService.helloService();
         return name;

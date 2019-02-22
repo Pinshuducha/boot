@@ -5,6 +5,7 @@ import org.apache.commons.logging.LogFactory;
 
 public class HelloService {
     private static Log logger = LogFactory.getLog(HelloService.class);
+
     public void helloService() {
         logger.warn("service类中的方法");
     }
