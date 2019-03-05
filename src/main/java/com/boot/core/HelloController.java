@@ -3,21 +3,22 @@ package com.boot.core;
 import com.boot.code.HelloService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-@RestController
+@Controller
 public class HelloController {
 
 
     private static Log logger = LogFactory.getLog(HelloController.class);
 
-    @GetMapping("/hello/test01/{name}")
-    public String hello(@PathVariable String name) {
+    @RequestMapping(value="/test/test01/{name}" , method = RequestMethod.GET)
+    public String test(@PathVariable String name) {
         logger.info("controller类中方法的参数：" + name);
         HelloService helloService = new HelloService();
         helloService.helloService();
-        return name;
+        return "redirect:/ceng/hello.html";
     }
 }
