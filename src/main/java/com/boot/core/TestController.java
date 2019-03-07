@@ -15,7 +15,7 @@ public class TestController {
 
     @RequestMapping(value="/hello/test01" , method = RequestMethod.GET)
     public String hello() {
-        jedisCluster.set("zhou","lu");
+        jedisCluster.set("zhou","xixi");
        return jedisCluster.get("zhou");
     }
 }
