@@ -1,5 +1,6 @@
 package com.boot.common;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import redis.clients.jedis.HostAndPort;
 import redis.clients.jedis.JedisCluster;
@@ -10,6 +11,7 @@ import java.util.Set;
 
 @Configuration
 public class JedisClusterConfig {
+    @Bean
     public JedisCluster getJedisCluster() {
         Set<HostAndPort> nodes=new HashSet<>();
         nodes.add(new HostAndPort("127.0.0.1", 6379));
