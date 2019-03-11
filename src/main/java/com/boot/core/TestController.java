@@ -13,9 +13,9 @@ public class TestController {
     @Autowired
     private JedisCluster jedisCluster;
 
-    @RequestMapping(value="/hello/test01" , method = RequestMethod.GET)
+    @RequestMapping(value = "/hello/test01", method = RequestMethod.GET)
     public String hello() {
-        jedisCluster.set("zhou","xixi");
-       return jedisCluster.get("zhou");
+        jedisCluster.set("zhou", "xixi");
+        return jedisCluster.get("zhou");
     }
 }
