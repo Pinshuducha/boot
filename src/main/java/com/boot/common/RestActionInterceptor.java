@@ -49,19 +49,21 @@ public class RestActionInterceptor {
         logBuilder.append("--APPVersion:").append(appVersion).append("--DeviceModel:").append(deviceModel).append("--DeviceResolution:").append(deviceResolution).append("--SysVersion:").append(sysVersion).append("--channel:").append(channel).append("--channel_no:").append(channelNo).append("--servletPath:").append(request.getServletPath()).append("--methodInfo:").append(action);
         long startTime = System.currentTimeMillis();
         String retStr;
+//        if (args.length > 0) {
+//            if (args[0] instanceof Map) {
+//                retStr = this.getServletPath(request);
+//                Map argsMap = this.skipServletPathKeys(retStr, "faceCheckByDataPackage", (Map) args[0], Arrays.asList("dataPackage"));
+//                argsMap = this.skipServletPathKeys(retStr, "faceCheckByDataType", argsMap, Arrays.asList("fileList", "dataPackage", "delta"));
+//                argsMap = this.skipServletPathKeys(retStr, "merchFaceCheckByDataType", argsMap, Arrays.asList("fileList", "delta"));
+//                argsMap = this.skipServletPathKeys(retStr, "getOCRCertInfo", argsMap, Arrays.asList("data"));
+//                argsBuilder.append(new JSONObject(argsMap));
+//            } else {
+//                argsBuilder.append(args[0]);
+//            }
+//        }
         if (args.length > 0) {
-            if (args[0] instanceof Map) {
-                retStr = this.getServletPath(request);
-                Map argsMap = this.skipServletPathKeys(retStr, "faceCheckByDataPackage", (Map) args[0], Arrays.asList("dataPackage"));
-                argsMap = this.skipServletPathKeys(retStr, "faceCheckByDataType", argsMap, Arrays.asList("fileList", "dataPackage", "delta"));
-                argsMap = this.skipServletPathKeys(retStr, "merchFaceCheckByDataType", argsMap, Arrays.asList("fileList", "delta"));
-                argsMap = this.skipServletPathKeys(retStr, "getOCRCertInfo", argsMap, Arrays.asList("data"));
-                argsBuilder.append(new JSONObject(argsMap));
-            } else {
-                argsBuilder.append(args[0]);
-            }
+            argsBuilder.append(args[0]);
         }
-
         for (int i = 1; i < args.length; ++i) {
             argsBuilder.append(", ").append(args[i]);
         }
