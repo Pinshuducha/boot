@@ -3,3 +3,6 @@ server:
 spring:
   application:
     name: boot
+common:
+  switchValue1: false
+  switchValue2: true
