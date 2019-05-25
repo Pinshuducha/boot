@@ -1,5 +1,5 @@
 server:
-  port: 8000
+  port: 8080
 spring:
   application:
     name: boot
@@ -8,9 +8,3 @@ spring:
     host: 127.0.0.1
     password: 123456
     database: 0
-    timeout: 0
-    pool:
-      max-active: 8
-      max-wait: -1
-      max-idle: 8
-      min-idle: 0
