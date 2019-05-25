@@ -16,7 +16,10 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
+
+import java.util.concurrent.TimeUnit;
 
 @Configuration
 public class OAuth2ServerConfig {
@@ -58,7 +61,7 @@ public class OAuth2ServerConfig {
 //        password 方案二：用 BCrypt 对密码编码
 //        String finalSecret = new BCryptPasswordEncoder().encode("123456");
             // password 方案三：支持多种编码，通过密码的前缀区分编码方式
-            String finalSecret = "{bcrypt}"+new BCryptPasswordEncoder().encode("123456");
+            String finalSecret = "{bcrypt}" + new BCryptPasswordEncoder().encode("123456");
             //配置两个客户端,一个用于password认证一个用于client认证
             clients.inMemory().withClient("client_1")
                     .resourceIds(DEMO_RESOURCE_ID)
@@ -82,6 +85,14 @@ public class OAuth2ServerConfig {
                     .authenticationManager(authenticationManager)
                     .userDetailsService(userDetailsService)
                     .allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST);
+            DefaultTokenServices tokenService = new DefaultTokenServices();
+            tokenService.setTokenStore(endpoints.getTokenStore());
+            tokenService.setSupportRefreshToken(true);
+            tokenService.setClientDetailsService(endpoints.getClientDetailsService());
+            tokenService.setTokenEnhancer(endpoints.getTokenEnhancer());
+            tokenService.setAccessTokenValiditySeconds((int) TimeUnit.SECONDS.toSeconds(60));
+            tokenService.setReuseRefreshToken(false);
+            endpoints.tokenServices(tokenService);
         }
 
         @Override
