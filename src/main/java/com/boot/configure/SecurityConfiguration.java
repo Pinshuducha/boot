@@ -48,6 +48,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return manager;
     }
 
+    /**
+     * 须用5.0以上的security-core版本
+     * @return
+     */
     @Bean
     PasswordEncoder passwordEncoder(){
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();

@@ -6,6 +6,7 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -46,7 +47,8 @@ public class OAuth2ServerConfig {
         AuthenticationManager authenticationManager;
         @Autowired
         RedisConnectionFactory redisConnectionFactory;
-
+        @Autowired
+        UserDetailsService userDetailsService;
 
         @Override
         public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
@@ -64,7 +66,8 @@ public class OAuth2ServerConfig {
                     .scopes("select")
                     .authorities("oauth2")
                     .secret(finalSecret)
-                    .and().withClient("client_2")
+                    .and()
+                    .withClient("client_2")
                     .resourceIds(DEMO_RESOURCE_ID)
                     .authorizedGrantTypes("password", "refresh_token")
                     .scopes("select")
@@ -77,6 +80,7 @@ public class OAuth2ServerConfig {
             endpoints
                     .tokenStore(new RedisTokenStore(redisConnectionFactory))
                     .authenticationManager(authenticationManager)
+                    .userDetailsService(userDetailsService)
                     .allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST);
         }
 
