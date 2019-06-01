@@ -36,8 +36,10 @@ public class OAuth2ServerConfig {
 
         @Override
         public void configure(HttpSecurity http) throws Exception {
-            http.authorizeRequests().antMatchers("/order/**").authenticated();//配置order访问控制，必须认证过后才可以访问
-
+            //http.authorizeRequests().antMatchers("/order/**").authenticated();//配置order访问控制，必须认证过后才可以访问
+            // 配在这里的url接口，免token。其余要校验token
+            http.authorizeRequests().antMatchers("/order/test")
+                .permitAll().anyRequest().authenticated().and().headers().frameOptions().sameOrigin();
         }
     }
 
@@ -87,7 +89,7 @@ public class OAuth2ServerConfig {
             tokenService.setClientDetailsService(endpoints.getClientDetailsService());
             tokenService.setTokenEnhancer(endpoints.getTokenEnhancer());
             // 设置token存活时间
-            tokenService.setAccessTokenValiditySeconds((int) TimeUnit.SECONDS.toSeconds(60));
+            tokenService.setAccessTokenValiditySeconds((int) TimeUnit.SECONDS.toSeconds(300));
             // 可以使用这个做自动登录时间
             tokenService.setRefreshTokenValiditySeconds((int)TimeUnit.DAYS.toSeconds(50));
             tokenService.setReuseRefreshToken(false);

@@ -12,4 +12,8 @@ public class HelloController {
     public String test(@RequestParam String name) {
         return name;
     }
+    @GetMapping(value="/order/test01")
+    public String test01(@RequestParam String name) {
+        return name;
+    }
 }
