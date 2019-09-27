@@ -63,7 +63,7 @@
         <queueSize>512</queueSize>
         <discardingThreshold>0</discardingThreshold>
     </appender>
-    <logger name="com.boot.code" level="WARM">
+    <logger name="com.boot.utils" level="WARM">
         <appender-ref ref="WARM_ASYNC" />
     </logger>
 </configuration>
