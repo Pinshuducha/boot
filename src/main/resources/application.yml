@@ -3,8 +3,3 @@ server:
 spring:
   application:
     name: boot
-common:
-  weixin:
-    appId: 我是微信
-  qq:
-    appId: 我是QQ
