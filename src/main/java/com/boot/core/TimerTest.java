@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
+
 /**
  * @author zhoulu
  * 定时任务类
@@ -15,10 +17,10 @@ public class TimerTest {
     @Value("${common.switchValue2}")
     private String switchValue2;
 
-    @Scheduled(fixedDelay = 1000)
+    @Scheduled(cron="${common.task01}")
     public void timer1() {
         if (Boolean.parseBoolean(switchValue1)) {
-            System.out.println("111");
+            System.out.println(new Date().getTime());
         }
     }
 

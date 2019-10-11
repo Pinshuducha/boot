@@ -4,5 +4,6 @@ spring:
   application:
     name: boot
 common:
-  switchValue1: false
-  switchValue2: true
+  switchValue1: true
+  switchValue2: false
+  task01: 0/3 * * * * ?
