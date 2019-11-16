@@ -17,14 +17,14 @@ public class TimerTest {
     @Value("${common.switchValue2}")
     private String switchValue2;
 
-    @Scheduled(cron="${common.task01}")
+   // @Scheduled(cron="${common.task01}")
     public void timer1() {
         if (Boolean.parseBoolean(switchValue1)) {
             System.out.println(new Date().getTime());
         }
     }
 
-    @Scheduled(fixedDelay = 2001)
+   // @Scheduled(fixedDelay = 2001)
     public void timer2() {
         if (Boolean.parseBoolean(switchValue2)) {
             System.out.println("222");
